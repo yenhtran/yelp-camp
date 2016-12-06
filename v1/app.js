@@ -2,9 +2,16 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     campgrounds = [
-        { name: 'Samon Creek', image: "https://source.unsplash.com/sK1hW5knKkw/400X300"},
-        { name: 'Granite Chief', image: "https://source.unsplash.com/63Znf38gnXk/400X300"},
-        { name: 'Mountain Goat Rest', image: "https://source.unsplash.com/yOujaSETXlo/400X300"}
+        { name: 'Samon Creek', image: "https://source.unsplash.com/sK1hW5knKkw"},
+        { name: 'Samon Creek', image: "https://source.unsplash.com/IKHHRAtheHw"},
+        { name: 'Granite Chief', image: "https://source.unsplash.com/0A_b9G-Rm6w"},
+        { name: 'Mountain Goat Rest', image: "https://source.unsplash.com/yOujaSETXlo"},
+        { name: 'Samon Creek', image: "https://source.unsplash.com/ilkTnuMunP8"},
+        { name: 'Granite Chief', image: "https://source.unsplash.com/5Rhl-kSRydQ"},
+        { name: 'Mountain Goat Rest', image: "https://source.unsplash.com/6ufqEvxq90w"},
+        { name: 'Mountain Goat Rest', image: "https://source.unsplash.com/tvicgTdh7Fg"},
+        { name: 'Granite Chief', image: "https://source.unsplash.com/eJ_OyOeGFHI"},
+        { name: 'Samon Creek', image: "https://source.unsplash.com/63Znf38gnXk"}
     ];
     
 app.use(bodyParser.urlencoded({extended: true}));
