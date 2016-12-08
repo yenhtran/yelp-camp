@@ -1,29 +1,49 @@
 var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
-    campgrounds = [
-        { name: 'Samon Creek', image: "https://source.unsplash.com/sK1hW5knKkw"},
-        { name: 'Samon Creek', image: "https://source.unsplash.com/IKHHRAtheHw"},
-        { name: 'Granite Chief', image: "https://source.unsplash.com/0A_b9G-Rm6w"},
-        { name: 'Mountain Goat Rest', image: "https://source.unsplash.com/yOujaSETXlo"},
-        { name: 'Samon Creek', image: "https://source.unsplash.com/ilkTnuMunP8"},
-        { name: 'Granite Chief', image: "https://source.unsplash.com/5Rhl-kSRydQ"},
-        { name: 'Mountain Goat Rest', image: "https://source.unsplash.com/6ufqEvxq90w"},
-        { name: 'Mountain Goat Rest', image: "https://source.unsplash.com/tvicgTdh7Fg"},
-        { name: 'Granite Chief', image: "https://source.unsplash.com/eJ_OyOeGFHI"},
-        { name: 'Samon Creek', image: "https://source.unsplash.com/63Znf38gnXk"}
-    ];
+    mongoose = require('mongoose');
+    
+mongoose.connect('mongodb://localhost/yelp_camp');
     
 app.use(bodyParser.urlencoded({extended: true}));
     
 app.set('view engine', 'ejs');
 
+//SCHEMA SETUP
+var campgroundSchema = new mongoose.Schema({
+    name: String,
+    image: String
+});
+
+//SET UP CAMPGROUND MODEL
+var Campground = mongoose.model('Campground', campgroundSchema);
+
+// Campground.create(
+//      { 
+//          name: 'Granite Chief', 
+//          image: "https://source.unsplash.com/0A_b9G-Rm6w"
+//      }, function(err, campground){
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             console.log('NEWLY CREATED CAMPGROUND')
+//             console.log(campground);
+//         }
+//     });
+    
 app.get('/', function(req, res){
     res.render('landing');
 });
 
 app.get('/campgrounds', function(req, res){
-    res.render('campgrounds', {campgrounds: campgrounds});
+    //Get all campgrounds from DB
+    Campground.find({}, function(err, allCampgrounds){
+        if(err) {
+            console.log(err);
+        } else {
+           res.render('campgrounds', {campgrounds: allCampgrounds}); 
+        }
+    });
 });
 
 app.post('/campgrounds', function(req, res){
