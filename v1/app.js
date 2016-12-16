@@ -5,6 +5,8 @@ var express = require('express'),
     Campground = require('./models/campground'),
     Comment = require('./models/comment'),
     User = require('./models/user'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local'),
     seedDB = require('./seeds');
 
 mongoose.connect('mongodb://localhost/yelp_camp');
