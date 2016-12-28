@@ -12,6 +12,7 @@ var campgroundSchema = new mongoose.Schema({
         },
         username: String
     },
+    price: String,
     comments: [
         {
             type: mongoose.Schema.Types.ObjectId,
